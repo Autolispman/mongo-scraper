@@ -3,17 +3,17 @@ const request = require("request");
 const mongojs = require("mongojs");
 const ObjectId = require("mongoose").Types.ObjectId;
 const mongoose = require("mongoose");
-const dbConnection = require("../config/config").connection;
+//const dbConnection = require("../config/config").connection;
 
 // db.once("open", function() {
 //     console.log("Database connected");
 // })
 
-
-let databaseUrl = "scraper";
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+let databaseUrl = MONGODB_URI;
 let collections = ["scrapedData"];
 
-// Hook mongojs configuration to the db variable
+// Hook mongojs configuration to the db varia
 var db = mongojs(databaseUrl, collections);
 //var db = mongojs(dbConnection, collections);
 db.on("error", function (error) {
